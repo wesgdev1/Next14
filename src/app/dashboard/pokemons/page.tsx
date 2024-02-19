@@ -1,6 +1,10 @@
 import { PokemonGrid, PokemonResponse, SimplePokemon } from "@/app/pokemons";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Pokemons",
+  description: "Listado de Pokemons",
+};
 const getPokemons = async (
   limit = 20,
   offset = 0
