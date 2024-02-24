@@ -13,6 +13,7 @@ export const WidgetsGrid = () => {
         subtitle="Productos agregados"
         label="Contador"
         icon={<IoCafeOutline size={50} />}
+        href="/dashboard/counter"
       />
       {/* <SimpleWidget />
       <SimpleWidget /> */}
