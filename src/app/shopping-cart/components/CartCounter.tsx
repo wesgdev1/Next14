@@ -6,19 +6,37 @@ import {
   resetCounter,
   substractOne,
 } from "@/store/counter/counterSlice";
+import { get } from "http";
 import { use, useEffect } from "react";
 
 interface Props {
   value: number;
 }
 
+interface CounterResponse {
+  method: string;
+  count: number;
+}
+
 export const CartCounter = ({ value = 0 }: Props) => {
   const count = useAppSelector((state) => state.counter.count);
   const dispatch = useAppDispatch();
 
+  // useEffect(() => {
+  //   dispatch(initCounterState(value));
+  // }, [dispatch, value]);
+
   useEffect(() => {
-    dispatch(initCounterState(value));
-  }, [dispatch, value]);
+    getApiCounter().then((data) => {
+      dispatch(initCounterState(data.count));
+    });
+  }, []);
+
+  const getApiCounter = async (): Promise<CounterResponse> => {
+    const data = await fetch("/api/counter").then((res) => res.json());
+    console.log(data);
+    return data;
+  };
   return (
     <>
       <span className="text-9xl">{count}</span>
