@@ -30,7 +30,7 @@ export const CartCounter = ({ value = 0 }: Props) => {
     getApiCounter().then((data) => {
       dispatch(initCounterState(data.count));
     });
-  }, []);
+  }, [dispatch]);
 
   const getApiCounter = async (): Promise<CounterResponse> => {
     const data = await fetch("/api/counter").then((res) => res.json());
